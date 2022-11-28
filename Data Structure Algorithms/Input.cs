@@ -11,10 +11,13 @@ namespace Data_Structure_Algorithms
     {
        public void UserInputForProgram()
         {
-            PrimeNumber primeNumber = new PrimeNumber();
-            primeNumber.RangePrime();
-            primeNumber.printAnagramNumber();
-            primeNumber.PrintNotAnagramNumbers();
+            Console.WriteLine("Enter the Year : ");
+            int year = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the month : ");
+            int month = Convert.ToInt32(Console.ReadLine());
+            calender calender = new calender();
+            calender.Getcalendar(year,month);
+            calender.PrintCalendar(year,month);
         }
     }
 }
