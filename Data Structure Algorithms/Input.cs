@@ -11,10 +11,10 @@ namespace Data_Structure_Algorithms
     {
        public void UserInputForProgram()
         {
-            Console.WriteLine("Enter the number of elements in BST :");
-            int elements = Convert.ToInt32(Console.ReadLine());
-            BSTNo bSTNo = new BSTNo();
-            bSTNo.NumberOfTree(elements);
+            Console.WriteLine("Enter the number of elements  :");
+            int i = Convert.ToInt32(Console.ReadLine());
+            PrimeNumber primeNumber = new PrimeNumber();
+            primeNumber.IsPrime(i);
         }
     }
 }
