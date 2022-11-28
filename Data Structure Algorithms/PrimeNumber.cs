@@ -67,6 +67,25 @@ namespace Data_Structure_Algorithms
                 }
             }
         }
+        public class Queue
+        {
+            Node front;
+            Node rear;
+            public void Enquque(int data)
+            {
+                Node newNode = new Node(data);
+                if (this.rear == null)
+                {
+                    this.front = this.rear = newNode;
+                }
+                else
+                {
+                    this.rear.next = newNode;
+                    this.rear = newNode;
+                }
+            }
+
+        }
         public void Display()
         {
             Node temp = head;
