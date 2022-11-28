@@ -3,9 +3,85 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Data_Structure_Algorithms
 {
+    public class Node
+    {
+        public int data;
+        public Node next;
+        public Node(int data)
+        {
+                this.data = data;
+        }
+    }
+    public class LinkedList
+    {
+        public Node head;
+        public int Add(int data)
+        {
+            Node node = new Node(data);
+
+            if (head == null)
+            {
+                head = node;
+            }
+            else
+            {
+                Node temp = head;
+                while (temp.next != null)
+                {
+                    temp = temp.next;
+                }
+                temp.next = node;
+            }
+            return data;
+        }
+
+        public void SortedLinkedList(int data)
+        {
+            Node temp = head, index = null;
+
+            if (head == null)
+            {
+                return;
+            }
+            else
+            {
+                while (temp != null)
+                {
+                    index = temp.next;
+
+                    while (index != null)
+                    {
+                        if (temp.data < index.data)
+                        {
+                            data = temp.data;
+                            temp.data = index.data;
+                            index.data = data;
+                        }
+                        index = index.next;
+                    }
+                    temp = temp.next;
+                }
+            }
+        }
+        public void Display()
+        {
+            Node temp = head;
+
+            if (temp == null)
+            {
+                Console.WriteLine("LinkedList is Empty");
+            }
+            while (temp != null)
+            {
+                Console.WriteLine(temp.data);
+                temp = temp.next;
+            }
+        }
+    }
     public class PrimeNumber
     {
         public int[,] Primes = new int[10, 100];
@@ -137,6 +213,27 @@ namespace Data_Structure_Algorithms
             return findPrime;
         }
         public bool CheckAnagram(int num1, int num2)
+        {
+            char[] char1 = Convert.ToString(num1).ToCharArray();
+            char[] char2 = Convert.ToString(num2).ToCharArray();
+            Array.Sort(char1);
+            Array.Sort(char2);
+            string s1 = new string(char1);
+            string s2 = new string(char2);
+            for (int i = 0; i < s1.Length; i++)
+            {
+                if (s1.Equals(s2))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        public bool CheckAnagramOrNot(int num1,int num2)
         {
             char[] char1 = Convert.ToString(num1).ToCharArray();
             char[] char2 = Convert.ToString(num2).ToCharArray();
