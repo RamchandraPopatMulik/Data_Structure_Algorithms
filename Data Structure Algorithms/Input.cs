@@ -11,10 +11,11 @@ namespace Data_Structure_Algorithms
     {
        public void UserInputForProgram()
         {
-            Console.WriteLine("\n Enter Word to Search : ");
-            int number = Convert.ToInt32(Console.ReadLine());
-            OrderedList orderedList = new OrderedList();
-            orderedList.OrderedLinkedList(number);
+            Console.WriteLine("Enter the number to search:");
+            string searchValue = Console.ReadLine();
+            SearchNumber searchNumber = new SearchNumber();
+            searchNumber.SearchData(searchValue);
+            searchNumber.Display();
         }
     }
 }
