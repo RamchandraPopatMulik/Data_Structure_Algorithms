@@ -1,11 +1,16 @@
-﻿namespace Data_Structure_Algorithms
+﻿using System.Net.Http.Headers;
+
+namespace Data_Structure_Algorithms
 {
     public class Program
     {
         static void Main(string[] args)
         {
-           Input input = new Input();
-           input.UserInputForProgram();
+            Console.WriteLine("Please Enter Your String Which You Want to Check : ");
+            string Word  = Console.ReadLine();
+
+            PalindromeString palindromeString = new PalindromeString();
+            palindromeString.checkString(Word);
         }
     }
 }
