@@ -8,13 +8,15 @@ namespace Data_Structure_Algorithms
 {
     public class PrimeNumber
     {
-        public int[,] Primes = new int[10,100];
+        public int[,] Primes = new int[10, 100];
+        int[,] anagram = new int[10, 100];
+        public int[,] notAnagramNumbers = new int[10, 100];
         public void RangePrime()
         {
             int num = 2;
-            for(int i=0;i<10;i++)
+            for (int i = 0; i < 10; i++)
             {
-                for(int j=1;j<100;j++)
+                for (int j = 1; j < 100; j++)
                 {
                     if (IsPrime(num))
                     {
@@ -28,18 +30,86 @@ namespace Data_Structure_Algorithms
         {
             int startRange = 1;
             int endRange = 100;
-            for(int i=0;i<10;i++)
+            for (int i = 0; i < 10; i++)
             {
-                for(int j=0;j<100;j++)
+                for (int j = 0; j < 100; j++)
                 {
-                    if (Primes[i,j]!=0)
+                    if (Primes[i, j] != 0)
                     {
-                        Console.WriteLine(Primes[i,j]);
+                        Console.WriteLine(Primes[i, j]);
                     }
                 }
-                startRange=0;
-                startRange=startRange+endRange;
-                endRange=endRange+100;
+                startRange = 0;
+                startRange = startRange + endRange;
+                endRange = endRange + 100;
+            }
+        }
+        public void printAnagramNumber()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 100; j++)
+                {
+                    if (Primes[i, j] != 0 && Primes[i, j] > 10)
+                    {
+                        for (int k = 0; k < 10; k++)
+                        {
+                            for (int q = j + 1; q < 100; q++)
+                            {
+                                if (CheckAnagram(Primes[i, j], Primes[k, q]))
+                                {
+                                    anagram[k, q] = Primes[i, j];
+                                    anagram[i, j] = Primes[k, q];
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            for (int k = 0; k < 10; k++)
+            {
+                for (int l = 0; l < 100; l++)
+                {
+                    if (anagram[k, l] != 0)
+                    {
+                        Console.WriteLine(anagram[k, l]);
+                    }
+
+                }
+            }
+        }
+        public void PrintNotAnagramNumbers()
+        {
+            int check = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 100; j++)
+                {
+                    if (Primes[i, j] != 0)
+                    {
+                        for (int k = 0; k < 10; k++)
+                        {
+                            for (int q = j + 1; q < 100; q++)
+                            {
+                                if (Primes[i, j] == anagram[k, q])
+                                {
+                                    check = 1;
+                                    break;
+                                }
+                            }
+                            if (check == 1)
+                            {
+                                break;
+                            }
+                        }
+                        if (check == 0)
+                        {
+                            notAnagramNumbers[i, j] = Primes[i, j];
+                            Console.WriteLine(notAnagramNumbers[i, j]);
+                        }
+                    }
+                }
             }
         }
         public bool IsPrime(int i)
@@ -65,6 +135,27 @@ namespace Data_Structure_Algorithms
                 findPrime = true;
             }
             return findPrime;
+        }
+        public bool CheckAnagram(int num1, int num2)
+        {
+            char[] char1 = Convert.ToString(num1).ToCharArray();
+            char[] char2 = Convert.ToString(num2).ToCharArray();
+            Array.Sort(char1);
+            Array.Sort(char2);
+            string s1 = new string(char1);
+            string s2 = new string(char2);
+            for (int i = 0; i < s1.Length; i++)
+            {
+                if (s1.Equals(s2))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
         }
     }
 }
