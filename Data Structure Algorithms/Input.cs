@@ -11,11 +11,10 @@ namespace Data_Structure_Algorithms
     {
        public void UserInputForProgram()
         {
-            Console.WriteLine("Enter the number to search:");
-            string searchValue = Console.ReadLine();
-            SearchNumber searchNumber = new SearchNumber();
-            searchNumber.SearchData(searchValue);
-            searchNumber.Display();
+            Console.WriteLine("Enter the number of elements in BST :");
+            int elements = Convert.ToInt32(Console.ReadLine());
+            BSTNo bSTNo = new BSTNo();
+            bSTNo.NumberOfTree(elements);
         }
     }
 }
