@@ -72,8 +72,9 @@ namespace Data_Structure_Algorithms
 }
     public class calender
     {
-        private int[,] calendar = new int[6, 7];
+    private int[,] calendar = new int[6, 7];
     private Queue<CalendarWeek<Calendar>> weekQueue = new Queue<CalendarWeek<Calendar>>();
+    public Queue<CalendarWeek<Calendar>> Stackqueue = new Queue<CalendarWeek<Calendar>>();
     public void Getcalendar(int year, int month)
         {
             DateTime dateTime = new DateTime(year, month, 1);
@@ -83,6 +84,7 @@ namespace Data_Structure_Algorithms
         for (int i = 0; i < calendar.GetLength(0); i++)
         {
             CalendarWeek<Calendar> cal = new CalendarWeek<Calendar>();
+            CalendarWeek<Calendar> StackQueue = new CalendarWeek<Calendar>();
             for (int j = 0; j < calendar.GetLength(1) && currentDay - dayOfWeek + 1 <= days; j++)
             {
                 if (i == 0 && month > j)
@@ -93,11 +95,14 @@ namespace Data_Structure_Algorithms
                 {
                     calendar[i, j] = currentDay - dayOfWeek + 1;
                     CalendarWeek<Calendar> calenderObj = new CalendarWeek<Calendar>(calendar[i, j]);
-                    cal.InsertAtLast(calenderObj);
+                    CalendarWeek<Calendar> calenderObjForStack = new CalendarWeek<Calendar>(calendar[i, j]);
+                    weekQueue.Append(calenderObj);
+                    StackQueue.InsertAtLast(calenderObjForStack);
                     currentDay++;
                 }
             }
             weekQueue.Enqueue(cal);
+            Stackqueue.Enqueue(StackQueue);
         }
         
         }
@@ -130,6 +135,22 @@ namespace Data_Structure_Algorithms
             }
 
         }
+    public void StackImplementation(int year, int month)
+    {
+        int n = Stackqueue.Count;
+        for (int i = 0; i < n; i++)
+        {
+            CalendarWeek<Calendar> StackQueue = new CalendarWeek<Calendar>();
+            Stackqueue.Enqueue(StackQueue);
+        }
+ 
+        Console.WriteLine($"{CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)} {year}");
+        Console.WriteLine("Mon Tue Wed Thu Fri Sat Sun");
+        foreach (var i in Stackqueue)
+        {
+            i.DisplayWeek();
+        }
+    }
     public void DisplayCalendarUsingQueue(int year, int month)
     {
         Console.WriteLine($"{CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)} {year}");

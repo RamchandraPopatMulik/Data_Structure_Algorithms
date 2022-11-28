@@ -19,6 +19,7 @@ namespace Data_Structure_Algorithms
             calender.Getcalendar(year,month);
             calender.PrintCalendar(year,month);
             calender.DisplayCalendarUsingQueue(year,month);
+            calender.StackImplementation(year,month);
         }
     }
 }
